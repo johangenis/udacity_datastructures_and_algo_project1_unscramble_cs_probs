@@ -1,0 +1,28 @@
+Task0.
+------
+Get items from Python lists is O(1) in 1 print statement happens in constant time, so the
+the runtime for Task0 is O(1).
+
+Task1.
+-----
+Task1 contains 1 for loop, taking input from 1 list, and inputting into another list,
+if certain conditions are met. Assuming that the input list can be very
+big, complexity is O(n).
+
+Task2.
+----
+This task has 1 for loop, taking 1 list as input, populating a dictionary with the
+elements of a list, of which one value of the dictionary is calculated in the
+for loop. Again, assuming the list might be large, this algorithm's complexity
+is O(n).
+
+Task3.
+-----
+Task3's complexity is O(n), since it has 2 for loops, taking the same list as input.
+The size of the list might be large, so O(n).
+
+Task4.
+-----
+In this task, a list is passed into a function, in which a for loop populates a
+set, if a certain condition is met. The size of the list is indeterminate, so
+O(n).
