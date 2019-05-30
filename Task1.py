@@ -22,11 +22,9 @@ with open('calls.csv', 'r') as f:
 def distinct_nums(a_list, b_list):
     a_list.extend(b_list)
     dist_nums = set()
-    dist_num_cnt = 0
     for i in a_list:
-        if i[0] not in dist_nums:
-            dist_nums.add(i[0])
-            dist_num_cnt += 1
-    return dist_num_cnt
+        dist_nums.add(i[0])
+        dist_nums.add(i[1])
+    return len(dist_nums)
 
 print(output.format(distinct_nums(texts, calls)))

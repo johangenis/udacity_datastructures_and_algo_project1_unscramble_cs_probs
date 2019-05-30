@@ -24,19 +24,23 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-tele_marketers = set()
 output = "These numbers could be telemarketers: "
+callers = set()
 
 def find_telemarketers(calls_lst, texts_lst):
-    calls_lst = [l[:2] for l in calls_lst]
-    texts_lst = [l[:2] for l in calls_lst]
-    calls_lst.extend(texts_lst)
-    for i in calls_lst:
-        if i[0] != calls_lst[1] and i[0] != calls_lst[2] and i[0] != calls_lst[3]:
-            tele_marketers.add(i[0])
-    return tele_marketers
+    texters_callees = set()
+    
+    for caller, callee, _, _ in calls_lst:
+        callers.add(caller)
+        texters_callees.add(callee)
+    for texter_s, texter_r, _ in texts_lst:
+        texters_callees.add(texter_s)
+        texters_callees.add(texter_r)
+    callers.difference(callers, texters_callees)
+
+    return callers
 
 find_telemarketers(calls, texts)
 print(output)
-for tel_no in sorted(tele_marketers):
+for tel_no in sorted(callers):
     print(tel_no)

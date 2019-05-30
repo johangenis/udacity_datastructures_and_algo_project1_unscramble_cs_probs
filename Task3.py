@@ -37,13 +37,8 @@ import csv
 # import re
 
 output_a = "The numbers called by people in Bangalore have codes:\n"
-output_b = "<percentage> {} percent of calls from fixed lines in Bangalore \
+output_b = "{} percent of calls from fixed lines in Bangalore \
 are calls to other fixed lines in Bangalore."
-bang_called_codes = set()
-bang_fxd_to_fxd = []
-bang_fxd_called_cnt = 0
-bang_fxd_to_fxd_cnt = 0
-bang_fxd_code = '(080)'
 
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
@@ -53,14 +48,23 @@ with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-for row in calls:
-    if row[0][0:5] == bang_fxd_code:
-        bang_fxd_called_cnt += 1
-        bang_called_codes.add(row[1][0:4].strip("()"))
+def get_code(tel_number):
+    if ')' in tel_number:
+        return tel_number.split(')')[0].lstrip('(')
+    if ' ' in tel_number:
+        return tel_number[:4]
 
-for row in calls:
-    if row[0][0:5] == bang_fxd_code and row[1][0:5] == bang_fxd_code:
-        bang_fxd_to_fxd_cnt += 1
+bang_called_codes = [get_code(callee)
+            for caller, callee, date, duration in calls if caller.startswith('(080)')]
+bang_fxd_to_fxd = [(caller, callee)
+                  for caller, callee, date, duration in calls
+                  if caller.startswith('(080)') and callee.startswith('(080)')]
 
-print(output_a, '\n'.join(sorted(bang_called_codes)))
-print(output_b.format(round((bang_fxd_to_fxd_cnt/bang_fxd_called_cnt*100), 2)))
+perc_bang_fxd_fxd = (
+    len(bang_fxd_to_fxd)/len(bang_called_codes)) * 100
+
+print(output_a)
+for number in set(bang_called_codes):
+    print(number)
+
+print(output_b.format(round(perc_bang_fxd_fxd, 2)))

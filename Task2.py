@@ -10,7 +10,7 @@ Read file into texts and calls.
 It's ok if you don't understand how to read files
 """
 import csv
-from collections import deque, defaultdict
+from collections import defaultdict
 
 with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
@@ -21,13 +21,18 @@ with open('calls.csv', 'r') as f:
     calls = list(reader)
 
 calls_dict = defaultdict(int)
-output = "{} spent the longest time, <total time> {} \
-seconds, on the phone during September 2016."
+output = "{} spent the longest time, {} seconds, on the phone during September 2016."
 
 for caller, callee, timestamp, duration in calls:
     calls_dict[caller] += int(duration)
     calls_dict[callee] += int(duration)
 
-longest_duration = max(calls_dict.items(), key = lambda x: x[1])
+max_time = 0
+phone_number = ""
 
-print(output.format(*longest_duration))
+for key,value in calls_dict.items():
+    if value > max_time:
+        phone_number = key
+        max_time = value
+
+print(output.format(phone_number, max_time))
