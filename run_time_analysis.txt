@@ -5,7 +5,7 @@ the runtime for Task0 is O(1).
 
 Task1.
 -----
-Task1 contains 1 for loop, taking input from 1 list, and inputting into another list,
+Task1 has 1 for loop, taking input from 1 list, and inputting into a set,
 if certain conditions are met. Assuming that the input list can be very
 big, complexity is O(n).
 
@@ -13,8 +13,8 @@ Task2.
 ----
 This task has 1 for loop, taking 1 list as input, populating a dictionary with the
 elements of a list, of which one value of the dictionary is calculated in the
-for loop. Again, assuming the list might be large, this algorithm's complexity
-is O(n).
+for loop. the dictionary is sorted with the max() built in function - resulting
+in O(n log(n)).
 
 Task3.
 -----
@@ -23,6 +23,7 @@ The size of the list might be large, so O(n).
 
 Task4.
 -----
-In this task, a list is passed into a function, in which a for loop populates a
-set, if a certain condition is met. The size of the list is indeterminate, so
-O(n).
+In this task, 2 lists are passed into a function, truncated to 2 columns each
+and appended into 1 list by using the extend() internal function.  This list
+is iterated over by a for loop, within which a set is populated, if certain
+conditions are met. O(n).

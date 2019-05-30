@@ -15,15 +15,13 @@ with open('texts.csv', 'r') as f:
     reader = csv.reader(f)
     texts = list(reader)
 
-text_message = "First record of texts <incoming number> {} texts \
-<answering number> {} at time <time> {}"
+text_message = "First record of texts {} texts {} at time {}"
 
 with open('calls.csv', 'r') as f:
     reader = csv.reader(f)
     calls = list(reader)
 
-call_message = "Last record of calls, <incoming number> {} calls \
-<answering number> {} at time <time> {} , lasting <during> {} seconds"
+call_message = "Last record of calls, {} calls {} at time {} ,lasting {} seconds"
 
 print((text_message.format(texts[0][0], texts[0][1], texts[0][2][11:])), '\n',\
 (call_message.format(calls[-1][0], calls[-1][1], calls[-1][2][11:], \

@@ -63,4 +63,4 @@ for row in calls:
         bang_fxd_to_fxd_cnt += 1
 
 print(output_a, '\n'.join(sorted(bang_called_codes)))
-print(output_b.format((bang_fxd_to_fxd_cnt/bang_fxd_called_cnt)*100))
+print(output_b.format(round((bang_fxd_to_fxd_cnt/bang_fxd_called_cnt*100), 2)))
