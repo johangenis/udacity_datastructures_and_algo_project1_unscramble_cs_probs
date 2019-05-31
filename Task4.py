@@ -29,18 +29,17 @@ callers = set()
 
 def find_telemarketers(calls_lst, texts_lst):
     texters_callees = set()
-    
+
     for caller, callee, _, _ in calls_lst:
         callers.add(caller)
         texters_callees.add(callee)
     for texter_s, texter_r, _ in texts_lst:
         texters_callees.add(texter_s)
         texters_callees.add(texter_r)
-    callers.difference(callers, texters_callees)
 
-    return callers
+    return callers.difference(texters_callees)
 
-find_telemarketers(calls, texts)
+telemarketers = find_telemarketers(calls, texts)
 print(output)
-for tel_no in sorted(callers):
+for tel_no in sorted(telemarketers):
     print(tel_no)

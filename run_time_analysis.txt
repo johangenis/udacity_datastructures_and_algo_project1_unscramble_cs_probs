@@ -19,10 +19,10 @@ the time complexity will be 0(n).
 
 Task3.
 -----
-Here we have 2 for loops, so, again - 0(n) + 0(n) = 0(2n).
-The size of the list might be large, so O(n).
+Here we have 2 for loops, as well as a sorted() statement on line 67,
+which brings the time complexity to 0(n logn).
 
 Task4.
 -----
-Here, again, we have 2 for loops, so - 0(n) + 0(n) = 0(2n).
-The size of the list might be large, so O(n).
+Similar to Task3, the sorted() statement in line 44 results in a time complexity
+of 0(n logn)

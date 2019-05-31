@@ -64,7 +64,7 @@ perc_bang_fxd_fxd = (
     len(bang_fxd_to_fxd)/len(bang_called_codes)) * 100
 
 print(output_a)
-for number in set(bang_called_codes):
+for number in sorted(set(bang_called_codes)):
     print(number)
 
 print(output_b.format(round(perc_bang_fxd_fxd, 2)))
